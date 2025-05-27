@@ -1,0 +1,56 @@
+body {
+    font-family: "Times New Roman", monospace;
+    font-size: 18px;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-image: url("../images/Tech2.jpg");
+    background-repeat: no-repeat;
+    background-size:cover;
+    background-position: center;
+
+}
+
+.container {
+    width: 1000px;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    background-color: rgba(122, 122, 122, 0.07);
+    backdrop-filter: blur(12px) saturate(180%);
+}
+
+h2 {
+    color: #ffffff;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #1d9f0e;
+}
+
+.section {
+    margin-bottom: 20px;
+    color: white;
+}
+
+h1{
+    text-align: center;
+}
+
+.btnBack{
+    text-align: center;
+}

@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panou de bord hardware</title>
+    <link rel="icon" href="images/Icon.jpg" type="image/x-icon">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="HardwareInfo.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="CSS/benchmark.css">
+</head>
+<body>
+<div class="container">
+<h1 class="text-white">Panou de bord hardware</h1>
+
+<div class="chart-container">
+    <canvas id="cpu-temp-chart"></canvas>
+</div>
+<div class="chart-container">
+    <canvas id="gpu-temp-chart"></canvas>
+</div>
+<div class="chart-container">
+    <canvas id="ram-usage-chart"></canvas>
+</div>
+<div class="chart-container">
+    <canvas id="disk-usage-chart"></canvas>
+</div>
+<div class="table-container">
+    <h2 class="text-white">Informatii Hardware</h2>
+    <table class="tableBackground" id="hardware-table">
+        <tr>
+            <th>Componente</th>
+            <th>Valori</th>
+        </tr>
+        <tr>
+            <td>CPU Temperature</td>
+            <td id="cpu-temp-value">-- °C</td>
+        </tr>
+        <tr>
+            <td>GPU Temperature</td>
+            <td id="gpu-temp-value">-- °C</td>
+        </tr>
+        <tr>
+            <td>RAM Usage</td>
+            <td id="ram-usage-value">-- %</td>
+        </tr>
+        <tr>
+            <td>Disk Usage</td>
+            <td id="disk-usage-value">-- %</td>
+        </tr>
+    </table>
+    <div class="p-3"></div>
+
+</div>
+    <div><a class="text-info font-weight-bold" href="http://localhost:3000/index.html">Configurare informații hardware</a></div>
+</div>
+<script>
+    // Create CPU Temperature Chart
+    const cpuTempChartCtx = document.getElementById('cpu-temp-chart').getContext('2d');
+    const cpuTempChart = new Chart(cpuTempChartCtx, {
+        type: 'line',
+        data: {
+            labels: [],
+            datasets: [{
+                label: 'CPU Temperature (°C)',
+                data: [],
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                borderColor: 'rgb(255,135,99)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            animation: {
+                duration: 0 // Disable initial animation
+            },
+            scales: {
+                x: {
+                    ticks: {
+                        color: "white" // Culoare albă pentru etichetele axei X
+                    }
+                },
+                y: {
+                    ticks: {
+                        color: "white" // Culoare albă pentru etichetele axei Y
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    labels: {
+                        color: "white" // Culoare albă pentru legenda graficului
+                    }
+                }
+            }
+        }
+
+    });
+
+    // Create GPU Temperature Chart
+    const gpuTempChartCtx = document.getElementById('gpu-temp-chart').getContext('2d');
+    const gpuTempChart = new Chart(gpuTempChartCtx, {
+        type: 'line',
+        data: {
+            labels: [],
+            datasets: [{
+                label: 'GPU Temperature (°C)',
+                data: [],
+                backgroundColor: 'rgba(90,255,7,0.2)',
+                borderColor: 'rgb(29,159,14)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            animation: {
+                duration: 0 // Disable initial animation
+            },
+            scales: {
+                x: {
+                    ticks: {
+                        color: "white" // Culoare albă pentru etichetele axei X
+                    }
+                },
+                y: {
+                    ticks: {
+                        color: "white" // Culoare albă pentru etichetele axei Y
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    labels: {
+                        color: "white" // Culoare albă pentru legenda graficului
+                    }
+                }
+            }
+        }
+
+    });
+
+    // Create RAM Usage Chart
+    const ramUsageChartCtx = document.getElementById('ram-usage-chart').getContext('2d');
+    const ramUsageChart = new Chart(ramUsageChartCtx, {
+        type: 'line',
+        data: {
+            labels: [],
+            datasets: [{
+                label: 'RAM Usage (%)',
+                data: [],
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            animation: {
+                duration: 0 // Disable initial animation
+            },
+            scales: {
+                x: {
+                    ticks: {
+                        color: "white" // Culoare albă pentru etichetele axei X
+                    }
+                },
+                y: {
+                    ticks: {
+                        color: "white" // Culoare albă pentru etichetele axei Y
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    labels: {
+                        color: "white" // Culoare albă pentru legenda graficului
+                    }
+                }
+            }
+        }
+
+    });
+
+    // Create Disk Usage Chart
+    const diskUsageChartCtx = document.getElementById('disk-usage-chart').getContext('2d');
+    const diskUsageChart = new Chart(diskUsageChartCtx, {
+        type: 'line',
+        data: {
+            labels: [],
+            datasets: [{
+                label: 'Disk Usage (%)',
+                data: [],
+                backgroundColor: 'rgba(255, 206, 86, 0.2)',
+                borderColor: 'rgba(255, 206, 86, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            animation: {
+                duration: 0 // Disable initial animation
+            },
+            scales: {
+                x: {
+                    ticks: {
+                        color: "white" // Culoare albă pentru etichetele axei X
+                    }
+                },
+                y: {
+                    ticks: {
+                        color: "white" // Culoare albă pentru etichetele axei Y
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    labels: {
+                        color: "white" // Culoare albă pentru legenda graficului
+                    }
+                }
+            }
+        }
+
+    });
+
+    // Update hardware information
+
+</script>
+</body>
+</html>

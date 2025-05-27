@@ -1,0 +1,58 @@
+body {
+    font-family: "Courier New", monospace;
+    font-weight: bold;
+    margin: 0;
+    padding: 20px;
+    background-image: url("../images/Tech2.jpg");
+    background-repeat: no-repeat;
+    background-size:cover;
+    background-position: center;
+}
+.container {
+    width: 800px;
+    margin: 20px auto; /* Marginea de sus și de jos 20px, iar marginile stânga și dreapta sunt "auto" pentru a centra containerul pe orizontală */
+    padding: 20px;
+    background-color: rgba(122, 122, 122, 0.07);
+    backdrop-filter: blur(12px) saturate(180%);
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Adaugă o umbrire de 10px */
+    display: flex; /* Folosește flexbox */
+    flex-direction: column; /* Aliniază elementele pe axa verticală */
+    align-items: center; /* Aliniază elementele pe axa orizontală (centru) */
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+.chart-container {
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 8px; /* Colțuri rotunjite pentru un aspect mai plăcut */
+    width: calc(50% - 10px); /* The width of each chart container (50% minus margin) */
+    margin: 0 10px 20px; /* the margin between graphics */
+    float: left; /* Left alignment to fit two charts per row */
+}
+.table-container {
+    clear: both; /* To ensure the table is placed below the charts */
+    margin-top: 50px;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+th {
+    background-color: #1d9f0e;
+}
+
+.tableBackground{
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 8px;
+    color: white;
+}
