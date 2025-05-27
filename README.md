@@ -5,6 +5,7 @@ Aplicație web pentru monitorizarea performanței hardware și afișarea specifi
 - Node.js, Express
 - JavaScript, HTML, CSS
 - Chart.js, systeminformation, OpenHardwareMonitor
+- PhpStorm ca IDE
 
 ## Instalare
 1. Clonează repository-ul: `git clone https://github.com/username/nume-repo.git`
